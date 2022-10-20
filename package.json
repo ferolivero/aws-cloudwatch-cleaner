@@ -1,0 +1,48 @@
+{
+    "name": "aws-cloudwatch-cleaner",
+    "version": "1.0.3-SNAPSHOT.0",
+    "description": "Libreria para limpieza de logs en cloudwatch",
+    "main": "index.js",
+    "license": "MIT",
+    "bin": {
+        "aws-cloudwatch-cleaner": "./app.js"
+    },
+    "directories": {
+        "services": "services",
+        "tests": "tests",
+        "components": "components",
+        "core": "core"
+    },
+    "scripts": {
+        "lint": "./node_modules/.bin/eslint **/*.js --rulesdir=\"./node_modules/eslint/lib/rules\" --color;exit 0",
+        "lint:fix": "./node_modules/.bin/eslint **/*.js --rulesdir=\"./node_modules/eslint/lib/rules\" --fix --color;exit 0",
+        "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text --exclude=tests  ./node_modules/mocha/bin/mocha tests/**/*spec.js --reporter spec",
+        "coverage": "./node_modules/.bin/nyc report --statements 80 --functions 80 --lines 80 --branches 80 --check-coverage --reporter=text-summary --per-file;exit 0",
+        "prettier": "./node_modules/.bin/prettier **/*.js --write",
+        "precommit": "./node_modules/.bin/prettier/lint-staged",
+        "prerelease_lib": "npm version prerelease --preid=SNAPSHOT",
+        "release_lib": "npm version patch"
+    },
+    "dependencies": {
+        "aws-sdk": "^2.656.0",
+        "dayjs": "^1.8.23",
+        "chalk": "^4.0.0",
+        "commander": "^5.0.0",
+        "figlet": "^1.3.0"
+    },
+    "devDependencies": {
+        "aws-sdk-mock": "^4.4.0",
+        "chai": "^4.2.0",
+        "dotenv": "^8.0.0",
+        "eslint": "^6.0.1",
+        "eslint-config-prettier": "^6.10.1",
+        "eslint-plugin-prettier": "^3.1.2",
+        "husky": "^4.2.3",
+        "lint-staged": "^10.1.1",
+        "mocha": "^6.1.4",
+        "nyc": "^14.1.1",
+        "prettier": "^2.0.2",
+        "prettier-eslint": "^9.0.1",
+        "sinon": "^7.3.2"
+    }
+}
